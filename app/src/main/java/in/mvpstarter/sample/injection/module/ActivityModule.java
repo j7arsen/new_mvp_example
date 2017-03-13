@@ -6,6 +6,8 @@ import android.content.Context;
 import dagger.Module;
 import dagger.Provides;
 import in.mvpstarter.sample.injection.ActivityContext;
+import in.mvpstarter.sample.ui.main.IMainContract;
+import in.mvpstarter.sample.ui.main.MainPresenter;
 
 @Module
 public class ActivityModule {
@@ -26,4 +28,5 @@ public class ActivityModule {
     Context providesContext() {
         return mActivity;
     }
+
 }

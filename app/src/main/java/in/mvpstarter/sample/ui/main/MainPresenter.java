@@ -16,7 +16,7 @@ import rx.Subscription;
 import rx.subscriptions.Subscriptions;
 
 @ConfigPersistent
-public class MainPresenter extends BasePresenter<IMainContract.IMainView> implements IMainContract.IMainPresenter{
+public class MainPresenter extends BasePresenter<IMainContract.IMainView> implements IMainContract.IMainPresenter {
 
     private DataManager mDataManager;
 
@@ -37,7 +37,7 @@ public class MainPresenter extends BasePresenter<IMainContract.IMainView> implem
         checkViewAttached();
         getMvpView().showProgress(true);
         //old variant
-       // mSubscription = mDataManager.getUserData(GetUserService.class).subscribe(s -> mObservableController.notifySuccess(Action.GET_ACTION, new Pair(s)), e -> mObservableController.notifyFailed(Action.GET_ACTION, e));
+        // mSubscription = mDataManager.getUserData(GetUserService.class).subscribe(s -> mObservableController.notifySuccess(Action.GET_ACTION, new Pair(s)), e -> mObservableController.notifyFailed(Action.GET_ACTION, e));
         mSubscription = new GetUserNetRequest(mDataManager, mObservableController).getUserData();
         addSubscription(mSubscription);
     }

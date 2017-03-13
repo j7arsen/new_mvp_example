@@ -2,8 +2,8 @@ package in.mvpstarter.sample.ui.main;
 
 import java.util.List;
 
-import in.mvpstarter.sample.ui.base.MvpPresenter;
-import in.mvpstarter.sample.ui.base.MvpView;
+import in.mvpstarter.sample.ui.base.IBaseMvpPresenter;
+import in.mvpstarter.sample.ui.base.IBaseMvpView;
 
 /**
  * Created by arsen on 07.02.17.
@@ -11,7 +11,7 @@ import in.mvpstarter.sample.ui.base.MvpView;
 
 public interface IMainContract {
 
-    interface IMainView extends MvpView {
+    interface IMainView extends IBaseMvpView {
 
         void showPokemon(List<String> pokemon);
 
@@ -21,13 +21,12 @@ public interface IMainContract {
 
     }
 
-    interface IMainPresenter extends MvpPresenter {
+    interface IMainPresenter extends IBaseMvpPresenter<IMainContract.IMainView> {
 
         void attachView(IMainContract.IMainView mvpView, String data);
 
         void getPokemon(int limit);
 
     }
-
 
 }

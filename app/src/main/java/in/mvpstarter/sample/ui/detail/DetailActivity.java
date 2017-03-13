@@ -28,8 +28,7 @@ public class DetailActivity extends BaseActivity implements IDetailContract.IDet
 
     public static final String EXTRA_POKEMON_NAME = "EXTRA_POKEMON_NAME";
 
-    @Inject
-    DetailPresenter mDetailPresenter;
+    IDetailContract.IDetailPresenter mDetailPresenter;
 
     @BindView(R.id.view_error)
     ErrorView mErrorView;
@@ -75,6 +74,7 @@ public class DetailActivity extends BaseActivity implements IDetailContract.IDet
         mDetailPresenter.getPokemon(mPokemonName);
     }
 
+
     @Override
     public void showPokemon(Pokemon pokemon) {
         if (pokemon.sprites != null && pokemon.sprites.frontDefault != null) {
@@ -83,6 +83,11 @@ public class DetailActivity extends BaseActivity implements IDetailContract.IDet
                     .into(mPokemonImage);
         }
         mPokemonLayout.setVisibility(View.VISIBLE);
+    }
+
+    @Inject
+    void setupPresenter(DetailPresenter presenter) {
+        this.mDetailPresenter = presenter;
     }
 
     @Override

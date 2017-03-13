@@ -29,7 +29,6 @@ public class DetailPresenter extends BasePresenter<IDetailContract.IDetailView> 
     @Override
     public void getPokemon(String name) {
         checkViewAttached();
-        getMvpView().showProgress(true);
         mSubscription = new GetUserNetRequest(mDataManager, mObservableController).getUserData();
         addSubscription(mSubscription);
         /*mDataManager.getPokemon(name)
@@ -48,5 +47,6 @@ public class DetailPresenter extends BasePresenter<IDetailContract.IDetailView> 
                     getMvpView().showError(throwable);
                 });*/
     }
+
 
 }

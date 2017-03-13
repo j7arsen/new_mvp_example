@@ -27,8 +27,8 @@ public class MainActivity extends BaseActivity implements IMainContract.IMainVie
 
     @Inject
     PokemonAdapter mPokemonAdapter;
-    @Inject
-    MainPresenter mMainPresenter;
+
+    IMainContract.IMainPresenter mMainPresenter;
 
     @BindView(R.id.view_error)
     ErrorView mErrorView;
@@ -64,12 +64,17 @@ public class MainActivity extends BaseActivity implements IMainContract.IMainVie
         mMainPresenter.getPokemon(POKEMON_COUNT);
     }
 
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
         mMainPresenter.detachView();
     }
+
+    @Inject
+    void setupPresenter(MainPresenter presenter) {
+        this.mMainPresenter = presenter;
+    }
+
 
     @Override
     public void showPokemon(List<String> pokemon) {

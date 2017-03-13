@@ -59,6 +59,7 @@ public class BaseDialogFragment extends DialogFragment {
         super.onSaveInstanceState(outState);
     }
 
+
     @Override
     public void onDestroy() {
         if (!getActivity().isChangingConfigurations()) {
