@@ -2,6 +2,7 @@ package in.mvpstarter.sample.ui.detail;
 
 import in.mvpstarter.sample.data.model.Pokemon;
 import in.mvpstarter.sample.data.model.Statistic;
+import in.mvpstarter.sample.ui.base.MvpPresenter;
 import in.mvpstarter.sample.ui.base.MvpView;
 import in.mvpstarter.sample.ui.base.Presenter;
 
@@ -23,7 +24,7 @@ public interface IDetailContract {
 
     }
 
-    interface IDetailPresenter extends Presenter<IDetailContract.IDetailView> {
+    interface IDetailPresenter extends MvpPresenter {
 
         void getPokemon(String name);
 

@@ -9,13 +9,11 @@ import in.mvpstarter.sample.data.DataManager;
 import in.mvpstarter.sample.data.UserData;
 import in.mvpstarter.sample.data.model.Pair;
 import in.mvpstarter.sample.injection.ConfigPersistent;
-import in.mvpstarter.sample.observable.ObservableController;
 import in.mvpstarter.sample.rest.GetUserNetRequest;
 import in.mvpstarter.sample.ui.base.BasePresenter;
 import in.mvpstarter.sample.ui.base.Event;
 import rx.Subscription;
 import rx.subscriptions.Subscriptions;
-
 
 @ConfigPersistent
 public class MainPresenter extends BasePresenter<IMainContract.IMainView> implements IMainContract.IMainPresenter{
@@ -25,12 +23,12 @@ public class MainPresenter extends BasePresenter<IMainContract.IMainView> implem
     private Subscription mSubscription = Subscriptions.empty();
 
     @Inject
-    public MainPresenter(DataManager dataManager, ObservableController observableController) {
-        super(observableController);
+    public MainPresenter(DataManager dataManager) {
         this.mDataManager = dataManager;
     }
 
-    public void attachView(IMainContract.IMainView mvpView) {
+    @Override
+    public void attachView(IMainContract.IMainView mvpView, String data) {
         super.attachView(mvpView);
     }
 

@@ -1,16 +1,11 @@
 package in.mvpstarter.sample.ui.detail;
 
-import android.util.Log;
-
 import javax.inject.Inject;
 
 import in.mvpstarter.sample.data.DataManager;
-import in.mvpstarter.sample.data.model.Pair;
 import in.mvpstarter.sample.injection.ConfigPersistent;
-import in.mvpstarter.sample.observable.ObservableController;
 import in.mvpstarter.sample.rest.GetUserNetRequest;
 import in.mvpstarter.sample.ui.base.BasePresenter;
-import in.mvpstarter.sample.ui.base.Event;
 import rx.Subscription;
 import rx.subscriptions.Subscriptions;
 
@@ -22,8 +17,7 @@ public class DetailPresenter extends BasePresenter<IDetailContract.IDetailView> 
     private Subscription mSubscription = Subscriptions.empty();
 
     @Inject
-    DetailPresenter(DataManager dataManager, ObservableController observableController) {
-        super(observableController);
+    DetailPresenter(DataManager dataManager) {
         mDataManager = dataManager;
     }
 
@@ -55,25 +49,4 @@ public class DetailPresenter extends BasePresenter<IDetailContract.IDetailView> 
                 });*/
     }
 
-    @Override
-    public void onStartRequest(int action) {
-        Log.i("Request", "Request");
-    }
-
-    @Override
-    public void onSuccess(int actionCode, Pair pair) {
-        unsubscribe(mSubscription);
-        Log.i("Request", "Request");
-    }
-
-    @Override
-    public void onFail(int action, Throwable e) {
-        unsubscribe(mSubscription);
-        Log.i("Request", "Request");
-    }
-
-    @Override
-    public void onEvent(Event event) {
-        Log.i("Request", "Request");
-    }
 }
