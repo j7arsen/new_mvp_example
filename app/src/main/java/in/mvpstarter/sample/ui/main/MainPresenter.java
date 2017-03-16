@@ -12,7 +12,7 @@ import in.mvpstarter.sample.data.model.Pair;
 import in.mvpstarter.sample.injection.ConfigPersistent;
 import in.mvpstarter.sample.rest.GetUserService;
 import in.mvpstarter.sample.ui.base.BasePresenter;
-import in.mvpstarter.sample.ui.base.BaseRendererRequest;
+import in.mvpstarter.sample.ui.base.BaseRequestController;
 import in.mvpstarter.sample.ui.base.Event;
 import in.mvpstarter.sample.ui.detail.TestEvent;
 import rx.Subscription;
@@ -50,7 +50,7 @@ public class MainPresenter extends BasePresenter<IMainContract.IMainView> implem
         //old variant
         // mSubscription = mDataManager.getUserData(GetUserService.class).subscribe(s -> mObservableController.notifySuccess(Action.GET_ACTION, new Pair(s)), e -> mObservableController.notifyFailed(Action.GET_ACTION, e));
         //  mSubscription = new GetUserNetRequest(mDataManager, mObservableController).getUserData();
-        mSubscription = mDataManager.getUserData(GetUserService.class, new BaseRendererRequest(mObservableController, Action.GET_ACTION));
+        mSubscription = mDataManager.getUserData(GetUserService.class, new BaseRequestController(mObservableController, Action.GET_ACTION));
         addSubscription(mSubscription);
     }
 

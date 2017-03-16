@@ -19,7 +19,7 @@ import timber.log.Timber;
  * creation of Dagger components and makes sure that instances of ConfigPersistentComponent are kept
  * across configuration changes.
  */
-public class BaseDialogFragment extends DialogFragment {
+public abstract class BaseDialogFragment extends DialogFragment {
 
     private static final String KEY_DIALOG_FRAGMENT_ID = "KEY_DIALOG_FRAGMENT_ID";
     private static final LongSparseArray<ConfigPersistentComponent> sComponentsArray =
