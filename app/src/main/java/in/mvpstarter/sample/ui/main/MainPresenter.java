@@ -14,6 +14,7 @@ import in.mvpstarter.sample.rest.GetUserService;
 import in.mvpstarter.sample.ui.base.BaseRendererRequest;
 import in.mvpstarter.sample.ui.base.BasePresenter;
 import in.mvpstarter.sample.ui.base.Event;
+import in.mvpstarter.sample.ui.detail.TestEvent;
 import rx.Subscription;
 import rx.subscriptions.Subscriptions;
 
@@ -81,6 +82,9 @@ public class MainPresenter extends BasePresenter<IMainContract.IMainView> implem
 
     @Override
     public void onEvent(Event event) {
-        //It is method for observe event from observable controller
+        if(event instanceof TestEvent){
+            Log.i("Event", "Event = " + ((TestEvent) event).getmTestString());
+        }
+        //Iet is method for observe event from observable controller
     }
 }
