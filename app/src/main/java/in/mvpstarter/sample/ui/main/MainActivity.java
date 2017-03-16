@@ -47,7 +47,7 @@ public class MainActivity extends BaseActivity implements IMainContract.IMainVie
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         activityComponent().inject(this);
-        mMainPresenter.attachView(this, "Data");
+        mMainPresenter.attachView(this, "Data", 17);
 
         setSupportActionBar(mToolbar);
 

@@ -27,12 +27,13 @@ public abstract class BasePresenter<T extends IBaseMvpView> implements IObserver
     @Inject
     protected ObservableController mObservableController;
 
-    public void attachView(T mvpView) {
+
+    protected void attachViewBase(T mvpView) {
         mMvpView = mvpView;
         mObservableController.addObserver(this);
     }
 
-    public void detachView() {
+    protected void detachViewBase() {
         mMvpView = null;
         mObservableController.removeObserver(this);
         if (!mCompositeSubscription.isUnsubscribed()) {
