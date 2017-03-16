@@ -2,9 +2,10 @@ package in.mvpstarter.sample.ui.detail;
 
 import javax.inject.Inject;
 
-import in.mvpstarter.sample.data.DataManager;
+import in.mvpstarter.sample.app.Action;
 import in.mvpstarter.sample.injection.ConfigPersistent;
-import in.mvpstarter.sample.rest.GetUserNetRequest;
+import in.mvpstarter.sample.rest.GetUserService;
+import in.mvpstarter.sample.ui.base.BaseRendererRequest;
 import in.mvpstarter.sample.ui.base.BasePresenter;
 import rx.Subscription;
 import rx.subscriptions.Subscriptions;
@@ -12,24 +13,17 @@ import rx.subscriptions.Subscriptions;
 @ConfigPersistent
 public class DetailPresenter extends BasePresenter<IDetailContract.IDetailView> implements IDetailContract.IDetailPresenter {
 
-    private final DataManager mDataManager;
-
-    private Subscription mSubscription = Subscriptions.empty();
+    private Subscription mSubscription;
 
     @Inject
-    DetailPresenter(DataManager dataManager) {
-        mDataManager = dataManager;
-    }
-
-    @Override
-    public void attachView(IDetailContract.IDetailView mvpView) {
-        super.attachView(mvpView);
+    DetailPresenter() {
+        mSubscription = Subscriptions.empty();
     }
 
     @Override
     public void getPokemon(String name) {
         checkViewAttached();
-        mSubscription = new GetUserNetRequest(mDataManager, mObservableController).getUserData();
+        mSubscription = mDataManager.getUserData(GetUserService.class, new BaseRendererRequest(mObservableController, Action.GET_ACTION));
         addSubscription(mSubscription);
         /*mDataManager.getPokemon(name)
                 .compose(SchedulerUtils.ioToMain())

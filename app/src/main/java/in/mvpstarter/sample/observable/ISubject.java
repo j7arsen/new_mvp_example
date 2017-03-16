@@ -17,9 +17,9 @@ public interface ISubject {
 
     void notifyStartedWithAction(final int action);
 
-    void notifySuccess(final int action, final Pair o);
+    void notifySuccess(int actionCode, final Pair o);
 
-    void notifyFailed(final int action, Throwable e);
+    void notifyFailed(int actionCode, Throwable e);
 
     boolean containObserver(IObserver iObserver);
 

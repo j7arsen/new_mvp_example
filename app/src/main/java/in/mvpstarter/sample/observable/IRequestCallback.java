@@ -8,8 +8,8 @@ import in.mvpstarter.sample.data.model.Pair;
 
 public interface IRequestCallback {
 
-    void onErrorResponse(int action, Throwable e);
+    void onErrorResponse(Throwable e);
 
-    void onSuccessResponse(int action, Pair successData);
+    void onSuccessResponse(Pair successData);
 
 }

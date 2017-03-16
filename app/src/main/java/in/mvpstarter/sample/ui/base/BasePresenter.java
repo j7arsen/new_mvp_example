@@ -4,6 +4,7 @@ import android.util.Log;
 
 import javax.inject.Inject;
 
+import in.mvpstarter.sample.data.DataManager;
 import in.mvpstarter.sample.data.model.Pair;
 import in.mvpstarter.sample.observable.IObserver;
 import in.mvpstarter.sample.observable.ObservableController;
@@ -19,6 +20,9 @@ public abstract class BasePresenter<T extends IBaseMvpView> implements IObserver
 
     protected T mMvpView;
     protected final CompositeSubscription mCompositeSubscription = new CompositeSubscription();
+
+    @Inject
+    protected DataManager mDataManager;
 
     @Inject
     protected ObservableController mObservableController;

@@ -9,11 +9,11 @@ import in.mvpstarter.sample.ui.base.Event;
 
 public interface IObserver {
 
-    void onStartRequest(final int action);
+    void onStartRequest(final int actionCode);
 
     void onSuccess(final int actionCode, Pair pair);
 
-    void onFail(int action, Throwable e);
+    void onFail(final int actionCode, Throwable e);
 
     //It is method for observe event from observable controller
     void onEvent(Event event);

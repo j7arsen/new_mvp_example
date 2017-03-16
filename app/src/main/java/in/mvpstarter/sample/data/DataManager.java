@@ -20,9 +20,9 @@ public class DataManager {
     }
 
     //request
-    public Subscription getUserData(Class<GetUserService> serviceClass, int actionCode, IRequestCallback requestCallback){
+    public Subscription getUserData(Class<GetUserService> serviceClass, IRequestCallback requestCallback){
         if(mRequestManager != null) {
-            return mRequestManager.getUserData(serviceClass).subscribe(s -> requestCallback.onSuccessResponse(actionCode, new Pair(s)), t -> requestCallback.onErrorResponse(actionCode, t));
+            return mRequestManager.getUserData(serviceClass).subscribe(s -> requestCallback.onSuccessResponse(new Pair(s)), t -> requestCallback.onErrorResponse(t));
         }
         return null;
     }
