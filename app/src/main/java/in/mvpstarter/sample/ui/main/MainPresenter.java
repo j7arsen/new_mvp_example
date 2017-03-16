@@ -29,7 +29,7 @@ public class MainPresenter extends BasePresenter<IMainContract.IMainView> implem
 
     @Override
     public void attachView(IMainContract.IMainView mvpView, String data) {
-        super.attachView(mvpView);
+        attachView(mvpView);
     }
 
     @Override
@@ -38,7 +38,7 @@ public class MainPresenter extends BasePresenter<IMainContract.IMainView> implem
         getMvpView().showProgress(true);
         //old variant
         // mSubscription = mDataManager.getUserData(GetUserService.class).subscribe(s -> mObservableController.notifySuccess(Action.GET_ACTION, new Pair(s)), e -> mObservableController.notifyFailed(Action.GET_ACTION, e));
-      //  mSubscription = new GetUserNetRequest(mDataManager, mObservableController).getUserData();
+        //  mSubscription = new GetUserNetRequest(mDataManager, mObservableController).getUserData();
         mSubscription = mDataManager.getUserData(GetUserService.class, new BaseRendererRequest(mObservableController, Action.GET_ACTION));
         addSubscription(mSubscription);
     }
