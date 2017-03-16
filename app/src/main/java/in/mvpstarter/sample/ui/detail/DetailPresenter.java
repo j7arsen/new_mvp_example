@@ -30,7 +30,7 @@ public class DetailPresenter extends BasePresenter<IDetailContract.IDetailView> 
     @Override
     public void getPokemon(String name) {
         checkViewAttached();
-       /* mSubscription = mDataManager.getUserData(GetUserService.class, new BaseRequestController(mObservableController, Action.GET_ACTION));
+       /* mSubscription = mDataManager.getUserData(GetUserService.class, new BaseOperationController(mObservableController, Action.GET_ACTION));
         addSubscription(mSubscription);*/
         mObservableController.notifyEvent(new TestEvent("Test"));
         /*mDataManager.getPokemon(name)

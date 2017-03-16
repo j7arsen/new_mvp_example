@@ -8,12 +8,12 @@ import in.mvpstarter.sample.observable.ISubject;
  * Created by j7ars on 11.02.2017.
  */
 
-public class BaseRequestController implements IRequestCallback{
+public class BaseOperationController implements IRequestCallback{
 
     private ISubject mObservable;
     private int mActionCode;
 
-    public BaseRequestController(ISubject subject, int actionCode){
+    public BaseOperationController(ISubject subject, int actionCode){
         this.mObservable = subject;
         this.mActionCode = actionCode;
         mObservable.notifyStartedWithAction(mActionCode);
