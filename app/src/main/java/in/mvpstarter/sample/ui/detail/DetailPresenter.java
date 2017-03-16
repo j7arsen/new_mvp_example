@@ -16,6 +16,7 @@ public class DetailPresenter extends BasePresenter<IDetailContract.IDetailView> 
     private Subscription mSubscription;
 
     @Inject
+
     DetailPresenter() {
         mSubscription = Subscriptions.empty();
     }

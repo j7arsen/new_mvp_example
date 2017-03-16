@@ -30,7 +30,7 @@ public class MainPresenter extends BasePresenter<IMainContract.IMainView> implem
 
     @Override
     public void attachView(IMainContract.IMainView mvpView, String data) {
-        attachView(mvpView);
+        super.attachView(mvpView);
     }
 
     @Override
