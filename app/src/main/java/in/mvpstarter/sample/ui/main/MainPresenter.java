@@ -1,5 +1,7 @@
 package in.mvpstarter.sample.ui.main;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 
 import javax.inject.Inject;
