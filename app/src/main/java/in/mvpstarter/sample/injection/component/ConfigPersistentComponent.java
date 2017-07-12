@@ -1,6 +1,8 @@
 package in.mvpstarter.sample.injection.component;
 
 import dagger.Component;
+import in.mvpstarter.sample.injection.module.ViewHolderModule;
+import in.mvpstarter.sample.injection.module.ViewModule;
 import in.mvpstarter.sample.injection.scope.ConfigPersistent;
 import in.mvpstarter.sample.injection.module.ActivityModule;
 import in.mvpstarter.sample.injection.module.FragmentModule;
@@ -24,5 +26,9 @@ public interface ConfigPersistentComponent {
     FragmentComponent fragmentComponent(FragmentModule fragmentModule);
     
     ServiceComponent serviceComponent(ServiceModule serviceModule);
+
+    ViewHolderComponent viewHolderComponent(ViewHolderModule viewHolderModule);
+
+    ViewComponent viewComponent(ViewModule viewModule);
 
 }
