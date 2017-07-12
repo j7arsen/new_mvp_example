@@ -1,8 +1,8 @@
 package in.mvpstarter.sample.injection.module;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.content.Context;
-import android.support.v4.app.Fragment;
 
 import dagger.Module;
 import dagger.Provides;
@@ -10,6 +10,7 @@ import in.mvpstarter.sample.injection.qualifier.FragmentContext;
 
 @Module
 public class FragmentModule {
+
     private Fragment mFragment;
 
     public FragmentModule(Fragment fragment) {

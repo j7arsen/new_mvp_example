@@ -3,7 +3,6 @@ package in.mvpstarter.sample.injection.component;
 import dagger.Component;
 import in.mvpstarter.sample.injection.scope.ConfigPersistent;
 import in.mvpstarter.sample.injection.module.ActivityModule;
-import in.mvpstarter.sample.injection.module.DialogFragmentModule;
 import in.mvpstarter.sample.injection.module.FragmentModule;
 import in.mvpstarter.sample.injection.module.ServiceModule;
 import in.mvpstarter.sample.ui.base.activity.BaseMvpActivity;
@@ -23,9 +22,7 @@ public interface ConfigPersistentComponent {
     ActivityComponent activityComponent(ActivityModule activityModule);
 
     FragmentComponent fragmentComponent(FragmentModule fragmentModule);
-
-    DialogFragmentComponent dialogFragmentComponent(DialogFragmentModule dialogFragmentModule);
-
+    
     ServiceComponent serviceComponent(ServiceModule serviceModule);
 
 }

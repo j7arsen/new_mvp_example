@@ -1,5 +1,6 @@
 package in.mvpstarter.sample.ui.base.dialogfragment;
 
+import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.LongSparseArray;
@@ -13,8 +14,8 @@ import butterknife.ButterKnife;
 import in.mvpstarter.sample.MvpStarterApplication;
 import in.mvpstarter.sample.injection.component.ConfigPersistentComponent;
 import in.mvpstarter.sample.injection.component.DaggerConfigPersistentComponent;
-import in.mvpstarter.sample.injection.component.DialogFragmentComponent;
-import in.mvpstarter.sample.injection.module.DialogFragmentModule;
+import in.mvpstarter.sample.injection.component.FragmentComponent;
+import in.mvpstarter.sample.injection.module.FragmentModule;
 import timber.log.Timber;
 
 /**
@@ -51,9 +52,12 @@ public abstract class BaseMvpDialogFragment extends BaseDialogFragment {
             Timber.i("Reusing ConfigPersistentComponent id=%d", fragmentId);
             configPersistentComponent = componentsArray.get(fragmentId);
         }
-        DialogFragmentComponent dialogFragmentComponent =
-                configPersistentComponent.dialogFragmentComponent(new DialogFragmentModule(this));
-        inject(dialogFragmentComponent);
+        if((BaseMvpDialogFragment.this instanceof Fragment)){
+
+        }
+        FragmentComponent fragmentComponent =
+                configPersistentComponent.fragmentComponent(new FragmentModule(this));
+        inject(fragmentComponent);
         attachView();
     }
 
@@ -70,7 +74,7 @@ public abstract class BaseMvpDialogFragment extends BaseDialogFragment {
 
     protected abstract int getLayout();
 
-    protected abstract void inject(DialogFragmentComponent dialogFragmentComponent);
+    protected abstract void inject(FragmentComponent fragmentComponent);
 
     protected abstract void attachView();
 
