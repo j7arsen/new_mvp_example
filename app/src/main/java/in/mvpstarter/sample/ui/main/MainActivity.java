@@ -70,6 +70,7 @@ public class MainActivity extends BaseMvpActivity implements IMainContract.IMain
 
     @Override
     public void showPokemon(List<String> pokemon) {
+        mMainPresenter.setArguments("Str", 11);
         mPokemonAdapter.setPokemon(pokemon);
         mPokemonAdapter.notifyDataSetChanged();
 
