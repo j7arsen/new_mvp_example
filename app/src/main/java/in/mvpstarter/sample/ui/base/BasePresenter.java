@@ -1,7 +1,5 @@
 package in.mvpstarter.sample.ui.base;
 
-import android.util.Log;
-
 import javax.inject.Inject;
 
 import in.mvpstarter.sample.data.DataManager;
@@ -27,41 +25,41 @@ public abstract class BasePresenter<T extends IBaseMvpView> implements IObserver
     @Inject
     protected ObservableController mObservableController;
 
-    public void attachViewBase(T mvpView) {
+    public void attachView(T mvpView) {
         mMvpView = mvpView;
         mObservableController.addObserver(this);
     }
 
-    public void detachViewBase() {
+    public void detachView() {
         mMvpView = null;
         mObservableController.removeObserver(this);
+        mCompositeSubscription.clear();
         if (!mCompositeSubscription.isUnsubscribed()) {
             mCompositeSubscription.unsubscribe();
         }
     }
 
+    public void setArguments(Object... params) {
+        return;
+    }
 
     @Override
     public void onStartRequest(int action) {
-        Log.i("Start Request", "Start Request");
         return;
     }
 
     @Override
     public void onSuccess(int actionCode, Pair pair) {
-        Log.i("Success Request", "Success Request");
         return;
     }
 
     @Override
     public void onFail(int action, Throwable e) {
-        Log.i("Fail Request", "Fail Request");
         return;
     }
 
     @Override
     public void onEvent(Event event) {
-        Log.i("Event", "Event");
         return;
     }
 

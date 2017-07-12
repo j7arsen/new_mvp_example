@@ -19,21 +19,6 @@ public class DetailPresenter extends BasePresenter<IDetailContract.IDetailView> 
     }
 
     @Override
-    public void attachView(IDetailContract.IDetailView mvpView) {
-        super.attachViewBase(mvpView);
-    }
-
-    @Override
-    public void detachView() {
-        super.detachViewBase();
-    }
-
-    @Override
-    public void setArguments(Object... params) {
-
-    }
-
-    @Override
     public void getPokemon(String name) {
         checkViewAttached();
        /* mSubscription = mDataManager.getUserData(GetUserService.class, new BaseOperationController(mObservableController, Action.GET_ACTION));

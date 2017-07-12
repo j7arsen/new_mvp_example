@@ -37,16 +37,6 @@ public class MainPresenter extends BasePresenter<IMainContract.IMainView> implem
     }
 
     @Override
-    public void attachView(IMainContract.IMainView mvpView) {
-        super.attachViewBase(mvpView);
-    }
-
-    @Override
-    public void detachView() {
-        super.detachViewBase();
-    }
-
-    @Override
     public void setArguments(Object... params) {
         if(params.length > 0){
             String par = (String) params[0];
