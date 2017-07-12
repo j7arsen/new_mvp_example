@@ -19,6 +19,7 @@ import in.mvpstarter.sample.R;
 import in.mvpstarter.sample.data.model.Pokemon;
 import in.mvpstarter.sample.data.model.Statistic;
 import in.mvpstarter.sample.injection.component.ActivityComponent;
+import in.mvpstarter.sample.injection.qualifier.ActivityContext;
 import in.mvpstarter.sample.ui.base.activity.BaseMvpActivity;
 import in.mvpstarter.sample.ui.common.ErrorView;
 import in.mvpstarter.sample.ui.detail.widget.StatisticView;

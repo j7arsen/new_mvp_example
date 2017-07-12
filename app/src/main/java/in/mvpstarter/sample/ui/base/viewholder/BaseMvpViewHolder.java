@@ -17,11 +17,8 @@ public abstract class BaseMvpViewHolder extends BaseViewHolder {
 
     private ViewHolderComponent mViewHolderComponent;
 
-    protected final View mItemView;
-
     public BaseMvpViewHolder(View itemView) {
         super(itemView);
-        this.mItemView = itemView;
     }
 
     protected void setupComponent(){
@@ -30,7 +27,7 @@ public abstract class BaseMvpViewHolder extends BaseViewHolder {
                     .applicationComponent(MvpStarterApplication.get(
                             mItemView.getContext()).getComponent())
                     .build();
-            mViewHolderComponent = configPersistentComponent.viewHolderComponent(new ViewHolderModule(this));
+            mViewHolderComponent = configPersistentComponent.viewHolderComponent(new ViewHolderModule(this, mItemView));
         }
         inject(mViewHolderComponent);
         attachView();

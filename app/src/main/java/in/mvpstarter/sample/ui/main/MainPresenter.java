@@ -1,5 +1,6 @@
 package in.mvpstarter.sample.ui.main;
 
+import android.content.Context;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -9,7 +10,10 @@ import javax.inject.Inject;
 import in.mvpstarter.sample.app.Action;
 import in.mvpstarter.sample.data.UserData;
 import in.mvpstarter.sample.data.model.Pair;
+import in.mvpstarter.sample.injection.qualifier.ActivityContext;
+import in.mvpstarter.sample.injection.qualifier.ApplicationContext;
 import in.mvpstarter.sample.injection.scope.ConfigPersistent;
+import in.mvpstarter.sample.injection.scope.PerActivity;
 import in.mvpstarter.sample.rest.GetUserService;
 import in.mvpstarter.sample.ui.base.BaseOperationController;
 import in.mvpstarter.sample.ui.base.BasePresenter;
@@ -22,6 +26,10 @@ import rx.subscriptions.Subscriptions;
 public class MainPresenter extends BasePresenter<IMainContract.IMainView> implements IMainContract.IMainPresenter {
 
     private Subscription mSubscription;
+
+    @Inject
+    @ApplicationContext
+    Context mContext;
 
     @Inject
     public MainPresenter() {

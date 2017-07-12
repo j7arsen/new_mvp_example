@@ -1,5 +1,6 @@
 package in.mvpstarter.sample.ui.main;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,6 +16,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import in.mvpstarter.sample.R;
 import in.mvpstarter.sample.injection.component.ActivityComponent;
+import in.mvpstarter.sample.injection.qualifier.ActivityContext;
 import in.mvpstarter.sample.ui.base.activity.BaseMvpActivity;
 import in.mvpstarter.sample.ui.common.ErrorView;
 import in.mvpstarter.sample.ui.detail.DetailActivity;
@@ -41,6 +43,10 @@ public class MainActivity extends BaseMvpActivity implements IMainContract.IMain
     SwipeRefreshLayout mSwipeRefreshLayout;
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
+
+    @Inject
+    @ActivityContext
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

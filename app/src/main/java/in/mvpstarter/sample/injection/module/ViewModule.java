@@ -1,9 +1,11 @@
 package in.mvpstarter.sample.injection.module;
 
+import android.content.Context;
 import android.view.View;
 
 import dagger.Module;
 import dagger.Provides;
+import in.mvpstarter.sample.injection.qualifier.ViewContext;
 import in.mvpstarter.sample.injection.scope.PerView;
 
 /**
@@ -22,6 +24,13 @@ public class ViewModule {
     @PerView
     View provideView(){
         return mView;
+    }
+
+    @Provides
+    @PerView
+    @ViewContext
+    Context provideContext(){
+        return mView.getContext();
     }
 
 }

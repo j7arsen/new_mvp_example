@@ -6,6 +6,7 @@ import android.content.Context;
 import dagger.Module;
 import dagger.Provides;
 import in.mvpstarter.sample.injection.qualifier.ActivityContext;
+import in.mvpstarter.sample.injection.scope.PerActivity;
 
 @Module
 public class ActivityModule {
@@ -17,11 +18,13 @@ public class ActivityModule {
     }
 
     @Provides
+    @PerActivity
     Activity provideActivity() {
         return mActivity;
     }
 
     @Provides
+    @PerActivity
     @ActivityContext
     Context providesContext() {
         return mActivity;

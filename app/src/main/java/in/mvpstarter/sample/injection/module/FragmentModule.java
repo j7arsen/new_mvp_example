@@ -7,6 +7,7 @@ import android.content.Context;
 import dagger.Module;
 import dagger.Provides;
 import in.mvpstarter.sample.injection.qualifier.FragmentContext;
+import in.mvpstarter.sample.injection.scope.PerFragment;
 
 @Module
 public class FragmentModule {
@@ -18,16 +19,19 @@ public class FragmentModule {
     }
 
     @Provides
+    @PerFragment
     Fragment providesFragment() {
         return mFragment;
     }
 
     @Provides
+    @PerFragment
     Activity provideActivity() {
         return mFragment.getActivity();
     }
 
     @Provides
+    @PerFragment
     @FragmentContext
     Context providesContext() {
         return mFragment.getActivity();
