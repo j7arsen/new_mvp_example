@@ -1,16 +1,17 @@
 package in.mvpstarter.sample.injection.component;
 
 import dagger.Component;
-import in.mvpstarter.sample.injection.ConfigPersistent;
+import in.mvpstarter.sample.injection.scope.ConfigPersistent;
 import in.mvpstarter.sample.injection.module.ActivityModule;
 import in.mvpstarter.sample.injection.module.DialogFragmentModule;
 import in.mvpstarter.sample.injection.module.FragmentModule;
-import in.mvpstarter.sample.ui.base.BaseActivity;
-import in.mvpstarter.sample.ui.base.BaseFragment;
+import in.mvpstarter.sample.injection.module.ServiceModule;
+import in.mvpstarter.sample.ui.base.activity.BaseMvpActivity;
+import in.mvpstarter.sample.ui.base.fragment.BaseFragment;
 
 /**
  * A dagger component that will live during the lifecycle of an Activity or Fragment or DialogFragment but it won't
- * be destroy during configuration changes. Check {@link BaseActivity} and {@link BaseFragment} to
+ * be destroy during configuration changes. Check {@link BaseMvpActivity} and {@link BaseFragment} to
  * see how this components survives configuration changes.
  * Use the {@link ConfigPersistent} scope to annotate dependencies that need to survive
  * configuration changes (for example Presenters).
@@ -24,5 +25,7 @@ public interface ConfigPersistentComponent {
     FragmentComponent fragmentComponent(FragmentModule fragmentModule);
 
     DialogFragmentComponent dialogFragmentComponent(DialogFragmentModule dialogFragmentModule);
+
+    ServiceComponent serviceComponent(ServiceModule serviceModule);
 
 }

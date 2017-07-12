@@ -6,7 +6,7 @@ import android.content.Context;
 
 import dagger.Module;
 import dagger.Provides;
-import in.mvpstarter.sample.injection.ActivityContext;
+import in.mvpstarter.sample.injection.qualifier.ActivityContext;
 
 /**
  * Created by j7ars on 12.02.2017.

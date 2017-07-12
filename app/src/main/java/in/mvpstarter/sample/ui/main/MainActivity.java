@@ -13,14 +13,14 @@ import java.util.List;
 import javax.inject.Inject;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import in.mvpstarter.sample.R;
-import in.mvpstarter.sample.ui.base.BaseActivity;
+import in.mvpstarter.sample.injection.component.ActivityComponent;
+import in.mvpstarter.sample.ui.base.activity.BaseMvpActivity;
 import in.mvpstarter.sample.ui.common.ErrorView;
 import in.mvpstarter.sample.ui.detail.DetailActivity;
 import timber.log.Timber;
 
-public class MainActivity extends BaseActivity implements IMainContract.IMainView, PokemonAdapter.ClickListener,
+public class MainActivity extends BaseMvpActivity implements IMainContract.IMainView, PokemonAdapter.ClickListener,
         ErrorView.ErrorListener {
 
     private static final int POKEMON_COUNT = 20;
@@ -28,6 +28,7 @@ public class MainActivity extends BaseActivity implements IMainContract.IMainVie
     @Inject
     PokemonAdapter mPokemonAdapter;
 
+    @Inject
     IMainContract.IMainPresenter mMainPresenter;
 
     @BindView(R.id.view_error)
@@ -44,10 +45,6 @@ public class MainActivity extends BaseActivity implements IMainContract.IMainVie
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
-        activityComponent().inject(this);
-        mMainPresenter.attachView(this, "Data", 17);
 
         setSupportActionBar(mToolbar);
 
@@ -62,17 +59,6 @@ public class MainActivity extends BaseActivity implements IMainContract.IMainVie
         mErrorView.setErrorListener(this);
 
         mMainPresenter.getPokemon(POKEMON_COUNT);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        mMainPresenter.detachView();
-    }
-
-    @Inject
-    void setupPresenter(MainPresenter presenter) {
-        this.mMainPresenter = presenter;
     }
 
 
@@ -103,6 +89,26 @@ public class MainActivity extends BaseActivity implements IMainContract.IMainVie
             mSwipeRefreshLayout.setRefreshing(false);
             mProgress.setVisibility(View.GONE);
         }
+    }
+
+    @Override
+    protected int getLayout() {
+        return R.layout.activity_main;
+    }
+
+    @Override
+    protected void inject(ActivityComponent activityComponent) {
+        activityComponent.inject(this);
+    }
+
+    @Override
+    protected void attachView() {
+        mMainPresenter.attachView(this);
+    }
+
+    @Override
+    protected void detachPresenter() {
+        mMainPresenter.detachView();
     }
 
     @Override

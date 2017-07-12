@@ -9,7 +9,7 @@ import javax.inject.Inject;
 import in.mvpstarter.sample.app.Action;
 import in.mvpstarter.sample.data.UserData;
 import in.mvpstarter.sample.data.model.Pair;
-import in.mvpstarter.sample.injection.ConfigPersistent;
+import in.mvpstarter.sample.injection.scope.ConfigPersistent;
 import in.mvpstarter.sample.rest.GetUserService;
 import in.mvpstarter.sample.ui.base.BaseOperationController;
 import in.mvpstarter.sample.ui.base.BasePresenter;
@@ -29,18 +29,22 @@ public class MainPresenter extends BasePresenter<IMainContract.IMainView> implem
     }
 
     @Override
-    public void attachView(IMainContract.IMainView mvpView, Object... params) {
+    public void attachView(IMainContract.IMainView mvpView) {
         super.attachViewBase(mvpView);
-        if(params.length > 0){
-            String par = (String) params[0];
-            int par2 = (Integer) params[1];
-            Log.i("Params", "Params = " + par + " par222 = " + par2);
-        }
     }
 
     @Override
     public void detachView() {
         super.detachViewBase();
+    }
+
+    @Override
+    public void setArguments(Object... params) {
+        if(params.length > 0){
+            String par = (String) params[0];
+            int par2 = (Integer) params[1];
+            Log.i("Params", "Params = " + par + " par222 = " + par2);
+        }
     }
 
     @Override

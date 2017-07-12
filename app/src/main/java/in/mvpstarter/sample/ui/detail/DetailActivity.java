@@ -15,19 +15,20 @@ import com.bumptech.glide.Glide;
 import javax.inject.Inject;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import in.mvpstarter.sample.R;
 import in.mvpstarter.sample.data.model.Pokemon;
 import in.mvpstarter.sample.data.model.Statistic;
-import in.mvpstarter.sample.ui.base.BaseActivity;
+import in.mvpstarter.sample.injection.component.ActivityComponent;
+import in.mvpstarter.sample.ui.base.activity.BaseMvpActivity;
 import in.mvpstarter.sample.ui.common.ErrorView;
 import in.mvpstarter.sample.ui.detail.widget.StatisticView;
 import timber.log.Timber;
 
-public class DetailActivity extends BaseActivity implements IDetailContract.IDetailView, ErrorView.ErrorListener {
+public class DetailActivity extends BaseMvpActivity implements IDetailContract.IDetailView, ErrorView.ErrorListener {
 
     public static final String EXTRA_POKEMON_NAME = "EXTRA_POKEMON_NAME";
 
+    @Inject
     IDetailContract.IDetailPresenter mDetailPresenter;
 
     @BindView(R.id.view_error)
@@ -54,10 +55,6 @@ public class DetailActivity extends BaseActivity implements IDetailContract.IDet
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail);
-        ButterKnife.bind(this);
-        activityComponent().inject(this);
-        mDetailPresenter.attachView(this);
 
         mPokemonName = getIntent().getStringExtra(EXTRA_POKEMON_NAME);
         if (mPokemonName == null) {
@@ -85,9 +82,24 @@ public class DetailActivity extends BaseActivity implements IDetailContract.IDet
         mPokemonLayout.setVisibility(View.VISIBLE);
     }
 
-    @Inject
-    void setupPresenter(DetailPresenter presenter) {
-        this.mDetailPresenter = presenter;
+    @Override
+    protected int getLayout() {
+        return R.layout.activity_detail;
+    }
+
+    @Override
+    protected void inject(ActivityComponent activityComponent) {
+        activityComponent.inject(this);
+    }
+
+    @Override
+    protected void attachView() {
+        mDetailPresenter.attachView(this);
+    }
+
+    @Override
+    protected void detachPresenter() {
+        mDetailPresenter.detachView();
     }
 
     @Override
@@ -115,9 +127,4 @@ public class DetailActivity extends BaseActivity implements IDetailContract.IDet
         mDetailPresenter.getPokemon(mPokemonName);
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        mDetailPresenter.detachView();
-    }
 }

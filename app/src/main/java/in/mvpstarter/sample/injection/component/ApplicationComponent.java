@@ -7,7 +7,7 @@ import javax.inject.Singleton;
 
 import dagger.Component;
 import in.mvpstarter.sample.data.DataManager;
-import in.mvpstarter.sample.injection.ApplicationContext;
+import in.mvpstarter.sample.injection.qualifier.ApplicationContext;
 import in.mvpstarter.sample.injection.module.ApplicationModule;
 import in.mvpstarter.sample.injection.module.NetModule;
 import in.mvpstarter.sample.observable.ObservableController;

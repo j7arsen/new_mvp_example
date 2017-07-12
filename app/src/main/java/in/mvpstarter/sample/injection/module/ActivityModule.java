@@ -5,9 +5,7 @@ import android.content.Context;
 
 import dagger.Module;
 import dagger.Provides;
-import in.mvpstarter.sample.injection.ActivityContext;
-import in.mvpstarter.sample.ui.main.IMainContract;
-import in.mvpstarter.sample.ui.main.MainPresenter;
+import in.mvpstarter.sample.injection.qualifier.ActivityContext;
 
 @Module
 public class ActivityModule {

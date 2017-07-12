@@ -9,7 +9,7 @@ import dagger.Module;
 import dagger.Provides;
 import in.mvpstarter.sample.data.DataManager;
 import in.mvpstarter.sample.data.remote.MvpStarterService;
-import in.mvpstarter.sample.injection.ApplicationContext;
+import in.mvpstarter.sample.injection.qualifier.ApplicationContext;
 
 import static org.mockito.Mockito.mock;
 

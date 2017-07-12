@@ -11,7 +11,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import butterknife.ButterKnife;
 import in.mvpstarter.sample.R;
-import in.mvpstarter.sample.ui.base.BaseActivity;
+import in.mvpstarter.sample.ui.base.activity.BaseActivity;
 
 public class MapsSampleActivity extends BaseActivity implements OnMapReadyCallback {
 

@@ -1,4 +1,4 @@
-package in.mvpstarter.sample.injection;
+package in.mvpstarter.sample.injection.scope;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -6,9 +6,7 @@ import java.lang.annotation.RetentionPolicy;
 import javax.inject.Scope;
 
 /**
- * A scoping annotation to permit objects whose lifetime should
- * conform to the life of the DialogFragment to be memorised in the
- * correct component.
+ * Created by j7ars on 12.07.2017.
  */
 @Scope
 @Retention(RetentionPolicy.RUNTIME)

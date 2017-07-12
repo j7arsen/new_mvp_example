@@ -7,7 +7,9 @@ package in.mvpstarter.sample.ui.base;
  */
 public interface IBaseMvpPresenter<V extends IBaseMvpView> {
 
-    void attachView(V mvpView, Object... params);
+    void attachView(V mvpView);
 
     void detachView();
+
+    void setArguments(Object... params);
 }

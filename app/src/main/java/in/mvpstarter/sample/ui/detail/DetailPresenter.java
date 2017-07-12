@@ -2,7 +2,7 @@ package in.mvpstarter.sample.ui.detail;
 
 import javax.inject.Inject;
 
-import in.mvpstarter.sample.injection.ConfigPersistent;
+import in.mvpstarter.sample.injection.scope.ConfigPersistent;
 import in.mvpstarter.sample.ui.base.BasePresenter;
 import rx.Subscription;
 import rx.subscriptions.Subscriptions;
@@ -18,13 +18,18 @@ public class DetailPresenter extends BasePresenter<IDetailContract.IDetailView> 
     }
 
     @Override
-    public void attachView(IDetailContract.IDetailView mvpView, Object... params) {
+    public void attachView(IDetailContract.IDetailView mvpView) {
         super.attachViewBase(mvpView);
     }
 
     @Override
     public void detachView() {
         super.detachViewBase();
+    }
+
+    @Override
+    public void setArguments(Object... params) {
+
     }
 
     @Override

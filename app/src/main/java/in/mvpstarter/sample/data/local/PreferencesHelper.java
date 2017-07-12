@@ -6,7 +6,7 @@ import android.content.SharedPreferences;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-import in.mvpstarter.sample.injection.ApplicationContext;
+import in.mvpstarter.sample.injection.qualifier.ApplicationContext;
 
 
 @Singleton
