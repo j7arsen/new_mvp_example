@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import java.util.concurrent.atomic.AtomicLong;
 
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import in.mvpstarter.sample.MvpStarterApplication;
 import in.mvpstarter.sample.injection.component.ConfigPersistentComponent;
 import in.mvpstarter.sample.injection.component.DaggerConfigPersistentComponent;
@@ -32,6 +33,8 @@ public abstract class BaseMvpFragment extends BaseFragment{
     private static final LongSparseArray<ConfigPersistentComponent> componentsArray =
             new LongSparseArray<>();
     private static final AtomicLong NEXT_ID = new AtomicLong(0);
+
+    private Unbinder mUnbinder;
 
     private long fragmentId;
 
@@ -69,9 +72,10 @@ public abstract class BaseMvpFragment extends BaseFragment{
             @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(getLayout(), container, false);
-        ButterKnife.bind(this, view);
+        mUnbinder = ButterKnife.bind(this, view);
         return view;
     }
+
 
     protected abstract int getLayout();
 
@@ -89,6 +93,7 @@ public abstract class BaseMvpFragment extends BaseFragment{
 
     @Override
     public void onDestroy() {
+        mUnbinder.unbind();
         if (!getActivity().isChangingConfigurations()) {
             Timber.i("Clearing ConfigPersistentComponent id=%d", fragmentId);
             componentsArray.remove(fragmentId);

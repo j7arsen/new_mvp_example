@@ -23,8 +23,6 @@ public interface IMainContract {
 
     interface IMainPresenter extends IBaseMvpPresenter<IMainContract.IMainView> {
 
-      //  void attachViewWithParameters(IMainContract.IMainView mvpView, String data);
-
         void getPokemon(int limit);
 
     }

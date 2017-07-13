@@ -1,22 +1,31 @@
 package in.mvpstarter.sample.ui.base;
 
 import in.mvpstarter.sample.data.model.Pair;
-import in.mvpstarter.sample.observable.IRequestCallback;
+import in.mvpstarter.sample.rest.IRequestCallback;
 import in.mvpstarter.sample.observable.ISubject;
 
 /**
  * Created by j7ars on 11.02.2017.
  */
 
-public class BaseOperationController implements IRequestCallback{
+public class BaseRequestController implements IRequestCallback{
 
     private ISubject mObservable;
     private int mActionCode;
 
-    public BaseOperationController(ISubject subject, int actionCode){
+    public BaseRequestController(ISubject subject, int actionCode){
         this.mObservable = subject;
         this.mActionCode = actionCode;
+    }
+
+    @Override
+    public void onStartRequest() {
         mObservable.notifyStartedWithAction(mActionCode);
+    }
+
+    @Override
+    public void onFinishRequest() {
+        mObservable.notifyFinishWithAction(mActionCode);
     }
 
     @Override

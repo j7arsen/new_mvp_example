@@ -1,4 +1,4 @@
-package in.mvpstarter.sample.observable;
+package in.mvpstarter.sample.rest;
 
 import in.mvpstarter.sample.data.model.Pair;
 
@@ -7,6 +7,10 @@ import in.mvpstarter.sample.data.model.Pair;
  */
 
 public interface IRequestCallback {
+
+    void onStartRequest();
+
+    void onFinishRequest();
 
     void onErrorResponse(Throwable e);
 

@@ -6,6 +6,7 @@ import android.support.v4.util.LongSparseArray;
 import java.util.concurrent.atomic.AtomicLong;
 
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import in.mvpstarter.sample.MvpStarterApplication;
 import in.mvpstarter.sample.injection.component.ActivityComponent;
 import in.mvpstarter.sample.injection.component.ConfigPersistentComponent;
@@ -28,13 +29,15 @@ public abstract class BaseMvpActivity extends BaseActivity {
     private static final LongSparseArray<ConfigPersistentComponent> componentsArray =
             new LongSparseArray<>();
 
+    private Unbinder mUnbinder;
+
     private long activityId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayout());
-        ButterKnife.bind(this);
+        mUnbinder = ButterKnife.bind(this);
 
         activityId =
                 savedInstanceState != null
@@ -74,6 +77,7 @@ public abstract class BaseMvpActivity extends BaseActivity {
 
     @Override
     protected void onDestroy() {
+        mUnbinder.unbind();
         if (!isChangingConfigurations()) {
             componentsArray.remove(activityId);
         }

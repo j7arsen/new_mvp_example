@@ -10,7 +10,7 @@ import in.mvpstarter.sample.data.DataManager;
 import in.mvpstarter.sample.injection.qualifier.ApplicationContext;
 import in.mvpstarter.sample.injection.module.ApplicationModule;
 import in.mvpstarter.sample.injection.module.NetModule;
-import in.mvpstarter.sample.observable.ObservableController;
+import in.mvpstarter.sample.observable.EventController;
 
 @Singleton
 @Component(modules = {ApplicationModule.class, NetModule.class})
@@ -23,6 +23,6 @@ public interface ApplicationComponent {
 
     DataManager dataManager();
 
-    ObservableController observableController();
+    EventController observableController();
 
 }

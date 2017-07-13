@@ -6,9 +6,6 @@ import android.support.annotation.NonNull;
 import javax.inject.Inject;
 
 import in.mvpstarter.sample.data.DataManager;
-import in.mvpstarter.sample.data.model.Pair;
-import in.mvpstarter.sample.observable.IObserver;
-import in.mvpstarter.sample.observable.ObservableController;
 import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
 
@@ -17,7 +14,7 @@ import rx.subscriptions.CompositeSubscription;
  * attachView() and detachView(). It also handles keeping a reference to the mvpView that
  * can be accessed from the children classes by calling getMvpView().
  */
-public abstract class BasePresenter<T extends IBaseMvpView> implements IBaseMvpPresenter<T>, IObserver{
+public abstract class BasePresenter<T extends IBaseMvpView> implements IBaseMvpPresenter<T>{
 
     protected T mMvpView;
     protected final CompositeSubscription mCompositeSubscription = new CompositeSubscription();
@@ -25,19 +22,15 @@ public abstract class BasePresenter<T extends IBaseMvpView> implements IBaseMvpP
     @Inject
     protected DataManager mDataManager;
 
-    @Inject
-    protected ObservableController mObservableController;
 
     @Override
     public void attachView(T mvpView) {
         mMvpView = mvpView;
-        mObservableController.addObserver(this);
     }
 
     @Override
     public void detachView() {
         mMvpView = null;
-        mObservableController.removeObserver(this);
         mCompositeSubscription.clear();
         if (!mCompositeSubscription.isUnsubscribed()) {
             mCompositeSubscription.unsubscribe();
@@ -56,26 +49,6 @@ public abstract class BasePresenter<T extends IBaseMvpView> implements IBaseMvpP
 
     @Override
     public void restoreInstanceState(@NonNull Bundle savedInstanceState) {
-        return;
-    }
-
-    @Override
-    public void onStartRequest(int action) {
-        return;
-    }
-
-    @Override
-    public void onSuccess(int actionCode, Pair pair) {
-        return;
-    }
-
-    @Override
-    public void onFail(int action, Throwable e) {
-        return;
-    }
-
-    @Override
-    public void onEvent(Event event) {
         return;
     }
 

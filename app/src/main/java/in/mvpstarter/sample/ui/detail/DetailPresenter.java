@@ -3,7 +3,7 @@ package in.mvpstarter.sample.ui.detail;
 import javax.inject.Inject;
 
 import in.mvpstarter.sample.injection.scope.ConfigPersistent;
-import in.mvpstarter.sample.injection.scope.PerActivity;
+import in.mvpstarter.sample.observable.EventController;
 import in.mvpstarter.sample.ui.base.BasePresenter;
 import rx.Subscription;
 import rx.subscriptions.Subscriptions;
@@ -14,6 +14,10 @@ public class DetailPresenter extends BasePresenter<IDetailContract.IDetailView> 
     private Subscription mSubscription;
 
     @Inject
+    EventController mObservableController;
+    
+
+    @Inject
     public DetailPresenter() {
         mSubscription = Subscriptions.empty();
     }
@@ -21,9 +25,10 @@ public class DetailPresenter extends BasePresenter<IDetailContract.IDetailView> 
     @Override
     public void getPokemon(String name) {
         checkViewAttached();
-       /* mSubscription = mDataManager.getUserData(GetUserService.class, new BaseOperationController(mObservableController, Action.GET_ACTION));
-        addSubscription(mSubscription);*/
         mObservableController.notifyEvent(new TestEvent("Test"));
+       /* mSubscription = mDataManager.getUserData(GetUserService.class, new BaseRequestController(mObservableController, Action.GET_ACTION));
+        addSubscription(mSubscription);*/
+
         /*mDataManager.getPokemon(name)
                 .compose(SchedulerUtils.ioToMain())
                 .subscribe(pokemon -> {

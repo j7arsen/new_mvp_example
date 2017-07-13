@@ -28,8 +28,8 @@ public class ApplicationModule {
 
     /*@Provides
     @Singleton
-    ObservableController provideObservableController(){
-        return ObservableController.getInstance();
+    EventController provideObservableController(){
+        return EventController.getInstance();
     }
 
     @Provides
