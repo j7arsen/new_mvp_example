@@ -1,5 +1,8 @@
 package in.mvpstarter.sample.ui.base;
 
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+
 import javax.inject.Inject;
 
 import in.mvpstarter.sample.data.DataManager;
@@ -14,7 +17,7 @@ import rx.subscriptions.CompositeSubscription;
  * attachView() and detachView(). It also handles keeping a reference to the mvpView that
  * can be accessed from the children classes by calling getMvpView().
  */
-public abstract class BasePresenter<T extends IBaseMvpView> implements IObserver{
+public abstract class BasePresenter<T extends IBaseMvpView> implements IBaseMvpPresenter<T>, IObserver{
 
     protected T mMvpView;
     protected final CompositeSubscription mCompositeSubscription = new CompositeSubscription();
@@ -25,11 +28,13 @@ public abstract class BasePresenter<T extends IBaseMvpView> implements IObserver
     @Inject
     protected ObservableController mObservableController;
 
+    @Override
     public void attachView(T mvpView) {
         mMvpView = mvpView;
         mObservableController.addObserver(this);
     }
 
+    @Override
     public void detachView() {
         mMvpView = null;
         mObservableController.removeObserver(this);
@@ -39,7 +44,18 @@ public abstract class BasePresenter<T extends IBaseMvpView> implements IObserver
         }
     }
 
+    @Override
     public void setArguments(Object... params) {
+        return;
+    }
+
+    @Override
+    public void saveInstanceState(Bundle outState) {
+        return;
+    }
+
+    @Override
+    public void restoreInstanceState(@NonNull Bundle savedInstanceState) {
         return;
     }
 
