@@ -7,10 +7,9 @@ import in.mvpstarter.sample.injection.component.ConfigPersistentComponent;
 import in.mvpstarter.sample.injection.component.DaggerConfigPersistentComponent;
 import in.mvpstarter.sample.injection.component.ViewHolderComponent;
 import in.mvpstarter.sample.injection.module.ViewHolderModule;
-import in.mvpstarter.sample.injection.module.ViewModule;
 
 /**
- * Created by j7ars on 12.07.2017.
+ * Created by j7ars on 13.07.2017.
  */
 
 public abstract class BaseMvpViewHolder extends BaseViewHolder {
@@ -36,5 +35,4 @@ public abstract class BaseMvpViewHolder extends BaseViewHolder {
     protected abstract void inject(ViewHolderComponent viewHolderComponent);
 
     protected abstract void attachView();
-
 }

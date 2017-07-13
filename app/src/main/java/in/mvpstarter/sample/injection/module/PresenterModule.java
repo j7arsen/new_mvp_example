@@ -5,7 +5,9 @@ import dagger.Module;
 import in.mvpstarter.sample.ui.detail.DetailPresenter;
 import in.mvpstarter.sample.ui.detail.IDetailContract;
 import in.mvpstarter.sample.ui.main.IMainContract;
+import in.mvpstarter.sample.ui.main.IPokemonVIewHolderContract;
 import in.mvpstarter.sample.ui.main.MainPresenter;
+import in.mvpstarter.sample.ui.main.PokemonViewHolderPresenter;
 
 /**
  * Created by j7ars on 12.07.2017.
@@ -24,6 +26,10 @@ public abstract class PresenterModule {
     //DialogFragments
 
     //Service
+
+    //ViewHolder
+    @Binds
+    abstract IPokemonVIewHolderContract.IViewHolderPresenter bindIViewHolderPresenter(PokemonViewHolderPresenter pokemonViewHolderPresenter);
 
 
 }

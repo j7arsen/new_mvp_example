@@ -12,8 +12,9 @@ import java.util.List;
 import javax.inject.Inject;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import in.mvpstarter.sample.R;
+import in.mvpstarter.sample.injection.component.ViewHolderComponent;
+import in.mvpstarter.sample.ui.base.viewholder.BaseMvpViewHolder;
 
 public class PokemonAdapter extends RecyclerView.Adapter<PokemonAdapter.PokemonViewHolder> {
 
@@ -44,9 +45,7 @@ public class PokemonAdapter extends RecyclerView.Adapter<PokemonAdapter.PokemonV
     @Override
     public void onBindViewHolder(PokemonViewHolder holder, int position) {
         String pokemon = mPokemon.get(position);
-        holder.mPokemon = pokemon;
-        holder.nameText.setText(String.format("%s%s"
-                , pokemon.substring(0, 1).toUpperCase(), pokemon.substring(1)));
+        holder.bind(pokemon);
     }
 
     @Override
@@ -58,18 +57,38 @@ public class PokemonAdapter extends RecyclerView.Adapter<PokemonAdapter.PokemonV
         void onPokemonClick(String pokemon);
     }
 
-    class PokemonViewHolder extends RecyclerView.ViewHolder {
+    public class PokemonViewHolder extends BaseMvpViewHolder implements IPokemonVIewHolderContract.IViewHolderView{
 
-        String mPokemon;
         @BindView(R.id.text_name)
         TextView nameText;
 
+        @Inject
+        IPokemonVIewHolderContract.IViewHolderPresenter mPresenter;
+
         PokemonViewHolder(View itemView) {
             super(itemView);
-            ButterKnife.bind(this, itemView);
-            itemView.setOnClickListener(v -> {
-                if (mClickListener != null) mClickListener.onPokemonClick(mPokemon);
-            });
+            setupComponent();
+        }
+
+        @Override
+        protected void inject(ViewHolderComponent viewHolderComponent) {
+            viewHolderComponent.inject(this);
+        }
+
+        @Override
+        protected void attachView() {
+            mPresenter.attachView(this);
+        }
+
+        @Override
+        public void openDetailPokemon() {
+            if (mClickListener != null) {
+                mClickListener.onPokemonClick("Test");
+            }
+        }
+
+        public void bind(String pokemon){
+            mPresenter.updateView(this, pokemon);
         }
     }
 

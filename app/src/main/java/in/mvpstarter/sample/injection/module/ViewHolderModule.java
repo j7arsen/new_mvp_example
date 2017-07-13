@@ -10,7 +10,7 @@ import in.mvpstarter.sample.injection.qualifier.ViewHolderContext;
 import in.mvpstarter.sample.injection.scope.PerViewHolder;
 
 /**
- * Created by j7ars on 12.07.2017.
+ * Created by j7ars on 13.07.2017.
  */
 @Module
 public class ViewHolderModule {
@@ -41,5 +41,6 @@ public class ViewHolderModule {
     Context provideContext(){
         return mItemView.getContext();
     }
+
 
 }
