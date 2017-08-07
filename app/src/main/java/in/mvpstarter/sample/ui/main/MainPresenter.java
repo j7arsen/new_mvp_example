@@ -14,8 +14,8 @@ import in.mvpstarter.sample.injection.scope.ConfigPersistent;
 import in.mvpstarter.sample.observable.EventController;
 import in.mvpstarter.sample.observable.IObserver;
 import in.mvpstarter.sample.rest.GetUserService;
-import in.mvpstarter.sample.ui.base.BaseRequestController;
 import in.mvpstarter.sample.ui.base.BasePresenter;
+import in.mvpstarter.sample.ui.base.BaseRequestController;
 import in.mvpstarter.sample.ui.base.event.Event;
 import in.mvpstarter.sample.ui.base.event.EventFailRequest;
 import in.mvpstarter.sample.ui.base.event.EventSuccessRequest;
@@ -99,7 +99,9 @@ public class MainPresenter extends BasePresenter<IMainContract.IMainView> implem
                 }
                 break;
             case CUSTOM_EVENT:
-                Log.i("Test event", "Test event = " + ((TestEvent) event).getTestString());
+                if(event.getActionCode() == Action.TEST_EVENT){
+                    Log.i("Test event", "Test event = " + ((TestEvent) event).getTestString());
+                }
                 break;
         }
     }
