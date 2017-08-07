@@ -8,10 +8,6 @@ public abstract class Event {
 
     protected int mActionCode;
 
-    public Event(){
-        this.mActionCode = -1;
-    }
-
     public Event(int mActionCode){
         this.mActionCode = mActionCode;
     }

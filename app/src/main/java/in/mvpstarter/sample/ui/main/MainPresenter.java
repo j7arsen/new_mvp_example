@@ -98,7 +98,7 @@ public class MainPresenter extends BasePresenter<IMainContract.IMainView> implem
                     getMvpView().showError(((EventFailRequest)event).getThrowable());
                 }
                 break;
-            case DEFAULT:
+            case CUSTOM_EVENT:
                 Log.i("Test event", "Test event = " + ((TestEvent) event).getTestString());
                 break;
         }

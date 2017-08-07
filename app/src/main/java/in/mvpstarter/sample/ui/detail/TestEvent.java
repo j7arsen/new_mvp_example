@@ -11,7 +11,8 @@ public class TestEvent extends Event {
 
     private String mTestString;
 
-    public TestEvent(String testString){
+    public TestEvent(int actionCode, String testString){
+        super(actionCode);
         this.mTestString = testString;
     }
 
@@ -21,6 +22,6 @@ public class TestEvent extends Event {
 
     @Override
     public EventType getEventType() {
-        return EventType.DEFAULT;
+        return EventType.CUSTOM_EVENT;
     }
 }

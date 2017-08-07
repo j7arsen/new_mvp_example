@@ -6,7 +6,7 @@ package in.mvpstarter.sample.ui.base.event;
 
 public enum EventType {
 
-    DEFAULT,
+    CUSTOM_EVENT,
     START_REQUEST,
     FINISH_REQUEST,
     SUCCESS_REQUEST,
