@@ -8,8 +8,8 @@ import in.mvpstarter.sample.data.model.Pair;
 
 public interface IBaseResponseCallback {
 
-    void onSuccess(Pair data);
+    void onSuccess(int actionCode, Pair data);
 
-    void onError(String message);
+    void onError(int actionCode, String message);
 
 }

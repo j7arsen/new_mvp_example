@@ -7,25 +7,31 @@ import retrofit2.Response;
  * Created by arsen on 08.08.17.
  */
 
-public class ResponseHandler<T>{
+public class ResponseHandler {
 
-    protected Response<T> mResponse;
+    private static ResponseHandler mInstance;
 
-    public ResponseHandler(Response<T> response){
-        this.mResponse = response;
+    private ResponseHandler() {
     }
 
-    public <V extends IBaseResponseCallback> void handle(V baseResponseCallback){
-        if(mResponse != null){
-            if(mResponse.isSuccessful()){
+    public static ResponseHandler newInstance() {
+        if (mInstance == null) {
+            mInstance = new ResponseHandler();
+        }
+        return mInstance;
+    }
+
+    public <V extends IBaseResponseCallback> void handle(int actionCode, Response response, V baseResponseCallback) {
+        if (response != null) {
+            if (response.isSuccessful()) {
                 if(baseResponseCallback != null){
-                    baseResponseCallback.onSuccess(new Pair(mResponse.body()));
+                    baseResponseCallback.onSuccess(actionCode, new Pair(response.body()));
                 }
             } else{
                 //TODO check code
-                if(mResponse.code() == 401){
+                if (response.code() == 401) {
                     if(baseResponseCallback instanceof IResponseCallback){
-                        ((IResponseCallback) baseResponseCallback).onBadRequest();
+                        ((IResponseCallback) baseResponseCallback).onBadRequest(actionCode);
                     }
                 }
             }

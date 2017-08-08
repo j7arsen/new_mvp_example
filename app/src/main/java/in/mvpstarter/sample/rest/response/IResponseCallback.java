@@ -6,8 +6,8 @@ package in.mvpstarter.sample.rest.response;
 
 public interface IResponseCallback extends IBaseResponseCallback {
 
-    void unAutorized();
+    void unAutorized(int actionCode);
 
-    void onBadRequest();
+    void onBadRequest(int actionCode);
 
 }

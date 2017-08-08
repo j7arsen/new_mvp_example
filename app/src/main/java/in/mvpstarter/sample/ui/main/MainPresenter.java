@@ -87,7 +87,7 @@ public class MainPresenter extends BasePresenter<IMainContract.IMainView> implem
                     unsubscribe(mSubscription);
                     getMvpView().showProgress(false);
                     Response<UserData> userDataResponse = (Response<UserData>) ((EventSuccessRequest) event).getData();
-                    successGetPokemon(userDataResponse);
+                    successGetPokemon(event.getActionCode(), userDataResponse);
                     /*UserData userData = userDataResponse.body();
                     ArrayList<String> pokeStrings = new ArrayList<>();
                     pokeStrings.add(userData.getName());
@@ -111,20 +111,15 @@ public class MainPresenter extends BasePresenter<IMainContract.IMainView> implem
         }
     }
 
-    private void successGetPokemon(Response<UserData> response){
-        new ResponseHandler(response).handle(new IResponseCallback() {
+    private void successGetPokemon(int actionCode, Response<UserData> response){
+        ResponseHandler.newInstance().handle(actionCode, response, new IResponseCallback() {
             @Override
-            public void unAutorized() {
+            public void unAutorized(int actionCode) {
 
             }
 
             @Override
-            public void onBadRequest() {
-
-            }
-
-            @Override
-            public void onSuccess(Pair data) {
+            public void onSuccess(int actionCode, Pair data) {
                 UserData userData = (UserData) data.getValue();
                 ArrayList<String> pokeStrings = new ArrayList<>();
                 pokeStrings.add(userData.getName());
@@ -134,7 +129,12 @@ public class MainPresenter extends BasePresenter<IMainContract.IMainView> implem
             }
 
             @Override
-            public void onError(String message) {
+            public void onBadRequest(int actionCode) {
+
+            }
+
+            @Override
+            public void onError(int actionCode, String message) {
 
             }
         });
