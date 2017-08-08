@@ -18,7 +18,9 @@ public class ResponseHandler<T>{
     public <V extends IBaseResponseCallback> void handle(V baseResponseCallback){
         if(mResponse != null){
             if(mResponse.isSuccessful()){
-                onSuccess(baseResponseCallback);
+                if(baseResponseCallback != null){
+                    baseResponseCallback.onSuccess(new Pair(mResponse.body()));
+                }
             } else{
                 //TODO check code
                 if(mResponse.code() == 401){
@@ -29,20 +31,4 @@ public class ResponseHandler<T>{
             }
         }
     }
-
-    protected void onSuccess(IBaseResponseCallback baseResponseCallback){
-        if(baseResponseCallback != null){
-            baseResponseCallback.onSuccess(new Pair(mResponse.body()));
-        }
-    }
-
-    protected void onError(IBaseResponseCallback baseResponseCallback, String message){
-        if(baseResponseCallback != null){
-            baseResponseCallback.onError(message);
-        }
-    }
-
-
-
-
 }
