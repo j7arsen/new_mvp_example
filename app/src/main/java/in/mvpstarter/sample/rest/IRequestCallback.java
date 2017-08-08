@@ -1,6 +1,6 @@
 package in.mvpstarter.sample.rest;
 
-import in.mvpstarter.sample.data.model.Pair;
+import retrofit2.Response;
 
 /**
  * Created by arsen on 07.02.17.
@@ -14,6 +14,6 @@ public interface IRequestCallback {
 
     void onErrorResponse(Throwable e);
 
-    void onSuccessResponse(Pair successData);
+    void onSuccessResponse(Response response);
 
 }

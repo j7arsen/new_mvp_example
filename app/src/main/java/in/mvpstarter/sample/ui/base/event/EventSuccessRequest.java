@@ -1,6 +1,6 @@
 package in.mvpstarter.sample.ui.base.event;
 
-import in.mvpstarter.sample.data.model.Pair;
+import retrofit2.Response;
 
 /**
  * Created by j7ars on 13.07.2017.
@@ -8,19 +8,19 @@ import in.mvpstarter.sample.data.model.Pair;
 
 public class EventSuccessRequest extends Event {
 
-    private Pair mData;
+    private Response mData;
 
-    public EventSuccessRequest(int mActionCode, Pair mData) {
+    public EventSuccessRequest(int mActionCode, Response mData) {
         super(mActionCode);
         this.mData = mData;
     }
 
-    public Pair getData() {
+    public Response getData() {
         return mData;
     }
 
-    public void setData(Pair mData) {
-        this.mData = mData;
+    public void setData(Response data) {
+        mData = data;
     }
 
     @Override

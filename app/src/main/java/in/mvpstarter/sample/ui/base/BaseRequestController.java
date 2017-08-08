@@ -1,8 +1,8 @@
 package in.mvpstarter.sample.ui.base;
 
-import in.mvpstarter.sample.data.model.Pair;
-import in.mvpstarter.sample.rest.IRequestCallback;
 import in.mvpstarter.sample.observable.ISubject;
+import in.mvpstarter.sample.rest.IRequestCallback;
+import retrofit2.Response;
 
 /**
  * Created by j7ars on 11.02.2017.
@@ -34,7 +34,7 @@ public class BaseRequestController implements IRequestCallback{
     }
 
     @Override
-    public void onSuccessResponse(Pair successData) {
-        mObservable.notifySuccess(mActionCode, successData);
+    public void onSuccessResponse(Response response) {
+        mObservable.notifySuccess(mActionCode, response);
     }
 }

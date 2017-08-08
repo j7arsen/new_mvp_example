@@ -1,6 +1,7 @@
 package in.mvpstarter.sample.rest;
 
 import in.mvpstarter.sample.data.UserData;
+import retrofit2.Response;
 import retrofit2.http.GET;
 import rx.Observable;
 
@@ -11,6 +12,6 @@ import rx.Observable;
 public interface GetUserService {
 
     @GET(Urls.GET_USER)
-    Observable<UserData> getUserData();
+    Observable<Response<UserData>> getUserData();
 
 }

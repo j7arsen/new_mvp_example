@@ -9,17 +9,20 @@ import javax.inject.Inject;
 
 import in.mvpstarter.sample.app.Action;
 import in.mvpstarter.sample.data.UserData;
+import in.mvpstarter.sample.data.model.Pair;
 import in.mvpstarter.sample.injection.qualifier.ApplicationContext;
 import in.mvpstarter.sample.injection.scope.ConfigPersistent;
 import in.mvpstarter.sample.observable.EventController;
 import in.mvpstarter.sample.observable.IObserver;
-import in.mvpstarter.sample.rest.GetUserService;
+import in.mvpstarter.sample.rest.response.IResponseCallback;
+import in.mvpstarter.sample.rest.response.ResponseHandler;
 import in.mvpstarter.sample.ui.base.BasePresenter;
 import in.mvpstarter.sample.ui.base.BaseRequestController;
 import in.mvpstarter.sample.ui.base.event.Event;
 import in.mvpstarter.sample.ui.base.event.EventFailRequest;
 import in.mvpstarter.sample.ui.base.event.EventSuccessRequest;
 import in.mvpstarter.sample.ui.detail.TestEvent;
+import retrofit2.Response;
 import rx.Subscription;
 import rx.subscriptions.Subscriptions;
 
@@ -67,7 +70,7 @@ public class MainPresenter extends BasePresenter<IMainContract.IMainView> implem
         //old variant
         // mSubscription = mDataManager.getUserData(GetUserService.class).subscribe(s -> mObservableController.notifySuccess(Action.GET_ACTION, new Pair(s)), e -> mObservableController.notifyFailed(Action.GET_ACTION, e));
         //  mSubscription = new GetUserNetRequest(mDataManager, mObservableController).getUserData();
-        mSubscription = mDataManager.getUserData(GetUserService.class, new BaseRequestController(mObservableController, Action.GET_ACTION));
+        mSubscription = mDataManager.getUserData(new BaseRequestController(mObservableController, Action.GET_ACTION));
         addSubscription(mSubscription);
     }
 
@@ -83,12 +86,14 @@ public class MainPresenter extends BasePresenter<IMainContract.IMainView> implem
                 if(event.getActionCode() == Action.GET_ACTION){
                     unsubscribe(mSubscription);
                     getMvpView().showProgress(false);
-                    UserData userData = (UserData) ((EventSuccessRequest) event).getData().getValue();
+                    Response<UserData> userDataResponse = (Response<UserData>) ((EventSuccessRequest) event).getData();
+                    successGetPokemon(userDataResponse);
+                    /*UserData userData = userDataResponse.body();
                     ArrayList<String> pokeStrings = new ArrayList<>();
                     pokeStrings.add(userData.getName());
                     pokeStrings.add(userData.getLogin());
                     pokeStrings.add(userData.getBio());
-                    getMvpView().showPokemon(pokeStrings);
+                    getMvpView().showPokemon(pokeStrings);*/
                 }
                 break;
             case FAIL_REQUEST:
@@ -104,5 +109,34 @@ public class MainPresenter extends BasePresenter<IMainContract.IMainView> implem
                 }
                 break;
         }
+    }
+
+    private void successGetPokemon(Response<UserData> response){
+        new ResponseHandler(response).handle(new IResponseCallback() {
+            @Override
+            public void unAutorized() {
+
+            }
+
+            @Override
+            public void onBadRequest() {
+
+            }
+
+            @Override
+            public void onSuccess(Pair data) {
+                UserData userData = (UserData) data.getValue();
+                ArrayList<String> pokeStrings = new ArrayList<>();
+                pokeStrings.add(userData.getName());
+                pokeStrings.add(userData.getLogin());
+                pokeStrings.add(userData.getBio());
+                getMvpView().showPokemon(pokeStrings);
+            }
+
+            @Override
+            public void onError(String message) {
+
+            }
+        });
     }
 }

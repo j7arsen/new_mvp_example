@@ -6,12 +6,12 @@ import java.util.ArrayList;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-import in.mvpstarter.sample.data.model.Pair;
 import in.mvpstarter.sample.ui.base.event.Event;
 import in.mvpstarter.sample.ui.base.event.EventFailRequest;
 import in.mvpstarter.sample.ui.base.event.EventFinishRequest;
 import in.mvpstarter.sample.ui.base.event.EventStartRequest;
 import in.mvpstarter.sample.ui.base.event.EventSuccessRequest;
+import retrofit2.Response;
 
 /**
  * Created by arsen on 07.02.17.
@@ -65,9 +65,9 @@ public class EventController implements ISubject {
     }
 
     @Override
-    public void notifySuccess(int action, Pair o) {
+    public void notifySuccess(int action, Response response) {
         for (int i = 0; i < mObservers.size(); i++) {
-            mObservers.get(i).onEvent(new EventSuccessRequest(action, o));
+            mObservers.get(i).onEvent(new EventSuccessRequest(action, response));
         }
     }
 

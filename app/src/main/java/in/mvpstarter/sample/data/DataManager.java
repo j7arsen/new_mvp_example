@@ -3,11 +3,11 @@ package in.mvpstarter.sample.data;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-import in.mvpstarter.sample.data.model.Pair;
 import in.mvpstarter.sample.rest.IRequestCallback;
-import in.mvpstarter.sample.rest.GetUserService;
 import in.mvpstarter.sample.rest.RequestManager;
 import rx.Subscription;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 @Singleton
 public class DataManager {
@@ -20,11 +20,13 @@ public class DataManager {
     }
 
     //request
-    public Subscription getUserData(Class<GetUserService> serviceClass, IRequestCallback requestCallback){
+    public Subscription getUserData(IRequestCallback requestCallback){
         if(mRequestManager != null) {
-            return mRequestManager.getUserData(serviceClass)
+            return mRequestManager.getUserData()
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
                     .doOnSubscribe(() -> requestCallback.onStartRequest())
-                    .doOnNext(s -> requestCallback.onSuccessResponse(new Pair(s)))
+                    .doOnNext(s -> requestCallback.onSuccessResponse(s))
                     .doOnError(t -> requestCallback.onErrorResponse(t))
                     .doOnUnsubscribe(() -> requestCallback.onFinishRequest())
                     .subscribe();
